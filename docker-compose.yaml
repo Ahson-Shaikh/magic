@@ -51,7 +51,7 @@ services:
        - ./volumes/storage/files:/opt/www/storage/files
        - ./bin/magic-service/daemon-entrypoint.sh:/opt/www/start.sh
     env_file:
-      - .env.exmaple
+      - .env
     deploy:
       resources:
         limits:

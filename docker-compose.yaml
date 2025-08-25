@@ -26,8 +26,6 @@ services:
       resources:
         limits:
           memory: 4G
-    networks:
-      - magic-sandbox-network
 
   magic-service-daemon:
     image: ghcr.io/dtyq/magic-service:${MAGIC_SERVICE_TAG-latest}
@@ -56,8 +54,6 @@ services:
       resources:
         limits:
           memory: 4G
-    networks:
-      - magic-sandbox-network
 
 
   # Web 应用
@@ -73,8 +69,6 @@ services:
     #   - ./web:/app
     env_file:
       - .env
-    networks:
-      - magic-sandbox-network
 
   # Super Magic 服务
   super-magic:
@@ -88,8 +82,6 @@ services:
       - ./config/config.yaml:/app/config/config.yaml
     env_file:
       - config/.env_super_magic
-    networks:
-      - magic-sandbox-network
 
   # Magic 网关服务
   magic-gateway:
@@ -105,8 +97,6 @@ services:
       - ./config/.env_magic_gateway:/app/.env
     env_file:
       - config/.env_magic_gateway
-    networks:
-      - magic-sandbox-network
 
   # 沙箱网关服务
   sandbox-gateway:
@@ -128,8 +118,6 @@ services:
       - ./config/config.yaml:/app/config/config.yaml
     env_file:
       - config/.env_sandbox_gateway
-    networks:
-      - magic-sandbox-network
 
  # Caddy 文件服务
   caddy:
@@ -142,8 +130,6 @@ services:
       - ./volumes/caddy/data:/data
       - ./volumes/caddy/config:/config
     command: caddy run --config /etc/caddy/Caddyfile
-    networks:
-      - magic-sandbox-network
 
   # MySQL 数据库服务
   db:
@@ -164,8 +150,6 @@ services:
       retries: 10
     env_file:
       - .env
-    networks:
-      - magic-sandbox-network
 
   # Redis 缓存服务
   redis:
@@ -181,8 +165,6 @@ services:
       test: [ 'CMD', 'redis-cli', 'ping' ]
     env_file:
       - .env
-    networks:
-      - magic-sandbox-network
 
 
   # RabbitMQ 消息队列服务
@@ -204,8 +186,6 @@ services:
       retries: 5
     env_file:
       - .env
-    networks:
-      - magic-sandbox-network
 
 
   # OpenSearch 搜索引擎服务
@@ -265,10 +245,5 @@ services:
       QDRANT_API_KEY: ${ODIN_QDRANT_API_KEY}
     env_file:
       - .env
-    networks:
-      - magic-sandbox-network
 
-networks:
-  magic-sandbox-network:
-    external: true
-    driver: bridge
+

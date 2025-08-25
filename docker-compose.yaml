@@ -72,7 +72,7 @@ services:
     # volumes:
     #   - ./web:/app
     env_file:
-      - .env.example
+      - .env
     networks:
       - magic-sandbox-network
 
@@ -180,7 +180,7 @@ services:
     healthcheck:
       test: [ 'CMD', 'redis-cli', 'ping' ]
     env_file:
-      - .env.example
+      - .env
     networks:
       - magic-sandbox-network
 
@@ -203,7 +203,7 @@ services:
       timeout: 10s
       retries: 5
     env_file:
-      - .env.example
+      - .env
     networks:
       - magic-sandbox-network
 
@@ -264,7 +264,7 @@ services:
     environment:
       QDRANT_API_KEY: ${ODIN_QDRANT_API_KEY}
     env_file:
-      - .env.example
+      - .env
     networks:
       - magic-sandbox-network
 
